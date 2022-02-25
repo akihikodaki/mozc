@@ -360,9 +360,11 @@ IPCServer::IPCServer(const std::string &name, int32_t num_connections,
   }
   DCHECK(!server_address_.empty());
 
-  const std::string dirname = FileUtil::Dirname(server_address_);
-  if (absl::Status s = mkdir_p(dirname); !s.ok()) {
-    LOG(ERROR) << s << ": Cannot create " << dirname;
+  if (!IsAbstractSocket(server_address_)) {
+    const std::string dirname = FileUtil::Dirname(server_address_);
+    if (absl::Status s = mkdir_p(dirname); !s.ok()) {
+      LOG(ERROR) << s << ": Cannot create " << dirname;
+    }
   }
 
   sockaddr_un addr;
