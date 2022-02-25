@@ -57,7 +57,7 @@ namespace gui {
 
 namespace {
 struct QtKeyEntry {
-  Qt::Key qt_key;
+  int qt_key;
   const char *mozc_key_name;
 };
 
@@ -114,6 +114,12 @@ const QtKeyEntry kQtKeyModifierNonRequiredTable[] = {
     {Qt::Key_Hiragana_Katakana, "Hiragana"},
     {Qt::Key_Eisu_toggle, "Eisu"},
     {Qt::Key_Zenkaku_Hankaku, "Hankaku/Zenkaku"},
+
+    // Qt cannot distinguish "Hangul" key from ON key.
+    {Qt::Key_Hangul, "ON"},
+
+    // Qt cannot distinguish "Hangul/Hanja" key from OFF key.
+    {Qt::Key_Hangul_Hanja, "OFF"},
 };
 
 #ifdef OS_WIN

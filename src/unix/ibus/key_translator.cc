@@ -127,6 +127,12 @@ const struct SpecialKeyMap {
     // Shift+TAB.
     {IBUS_ISO_Left_Tab, mozc::commands::KeyEvent::TAB},
 
+    // IBus cannot distinguish "Hangul" key from ON key.
+    {IBUS_Hangul, mozc::commands::KeyEvent::ON},
+
+    // IBus cannot distinguish "Hangul/Hanja" key from OFF key.
+    {IBUS_Hangul_Hanja, mozc::commands::KeyEvent::OFF},
+
     // TODO(mazda): Handle following keys?
     //   - IBUS_Kana_Lock? IBUS_KEY_Kana_Shift?
 };
